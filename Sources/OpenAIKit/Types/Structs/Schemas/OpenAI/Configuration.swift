@@ -31,8 +31,17 @@ public struct Configuration {
     /// The API key associated with the user.
     let apiKey: String
 
+    let serverUrl: String?
+
     public init(organizationId: String, apiKey: String) {
         self.organizationId = organizationId
         self.apiKey = apiKey
+        self.serverUrl = .none
+    }
+    
+    public init(organizationId: String, apiKey: String, serverUrl: String) {
+        self.organizationId = organizationId
+        self.apiKey = apiKey
+        self.serverUrl = serverUrl
     }
 }
