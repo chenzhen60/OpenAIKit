@@ -27,7 +27,7 @@ import Foundation
 
 public struct ChatParameters {
     /// ID of the model to use.
-    public var model: ChatModels
+    public var model: ChatModels?
 
     /// ID of the custom model created from fine-tuning.
     public var customModel: String?
@@ -103,7 +103,7 @@ public struct ChatParameters {
     public var functions: [Function]?
 
     public init(
-        model: ChatModels,
+        model: ChatModels? = nil,
         customModel: String? = nil,
         messages: [ChatMessage],
         temperature: Double = 1.0,
@@ -137,7 +137,7 @@ public struct ChatParameters {
     /// The body of the URL used for OpenAI API requests.
     public var body: [String: Any] {
         var result: [String: Any] = [
-            "model": self.customModel != nil ? self.customModel! : self.model.description,
+            "model": self.customModel != nil ? self.customModel! : (self.model?.description ?? ""),
             "temperature": self.temperature,
             "top_p": self.topP,
             "n": self.numberOfCompletions,
